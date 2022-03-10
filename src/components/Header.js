@@ -1,16 +1,31 @@
-import React from "react";
-import { PageHeader, Button, Descriptions } from "antd";
+import React, { useState } from "react";
+import { PageHeader, Button, Descriptions, Modal } from "antd";
+import EmulatorScreen from "./EmulatorScreen";
 
 const Header = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
-        style={{ maxHeight: "8vh", minHeight: "8vh" }}
+        style={{ maxHeight: "10vh" }}
         ghost={false}
         title="Android Editor"
         subTitle="Edit the code here and click submit"
         extra={[
-          <Button key="2">Show Emulator</Button>,
+          <Button key="2" onClick={showModal}>
+            Show Emulator
+          </Button>,
           <Button key="1" type="primary">
             Submit Code
           </Button>,
@@ -32,6 +47,31 @@ const Header = () => {
           </Descriptions.Item>
         </Descriptions> */}
       </PageHeader>
+      <Modal
+        title="Android Emulator"
+        visible={isModalVisible}
+        centered
+        style={{ top: 10 }}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <iframe
+            src="http://localhost:80"
+            allowFullScreen={true}
+            width="75%"
+            height="800px"
+            frameBorder="0"
+            title="Emulator"
+          ></iframe>
+        </div>
+      </Modal>
     </div>
   );
 };

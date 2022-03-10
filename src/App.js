@@ -1,15 +1,23 @@
 import "./App.css";
+import EmulatorScreen from "./components/EmulatorScreen";
 import Header from "./components/Header";
+import { Tabs } from "antd";
+import EditorScreen from "./components/EditorScreen";
+const { TabPane } = Tabs;
 function App() {
   return (
-    <div className="App" style={{ minHeight: "100vh", maxHeight: "100vh" }}>
+    <div className="App">
+      {/* <Tabs defaultActiveKey="1" centered style={{ margin: 0, padding: 0 }}>
+        <TabPane tab="Editor" key="1">
+          <EditorScreen />
+        </TabPane>
+        <TabPane tab="Emulator" key="2">
+          <EmulatorScreen />
+        </TabPane>
+      </Tabs> */}
       <Header />
-      <iframe
-        src="https://vscode.dev/"
-        style={{ display: "block", height: "92vh" }}
-        allowFullScreen={true}
-        width="100%"
-      ></iframe>
+      <EditorScreen />
+      {/* <EmulatorScreen /> */}
     </div>
   );
 }
